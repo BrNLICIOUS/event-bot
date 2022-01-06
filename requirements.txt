@@ -1,0 +1,6 @@
+datetime3
+discord.py
+python-dateutil
+regex
+mysql-connector
+aiocron

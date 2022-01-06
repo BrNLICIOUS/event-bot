@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+    app:
+        build: .
+        #image: oc-bots:latest
+        environment:
+          botCategoryName: ${botCategoryName}
+          botCalendarChannelID: ${botCalendarChannelID}
+          botMediaChannelName: ${botMediaChannelName}
+          botLogChannelID: ${botLogChannelID}
+          botGuildID: ${botGuildID}
+          botTOKEN: ${botTOKEN}
+          setDebug: ${setDebug}
+          TZ: ${timeZone}
+        links:
+            - db
+        depends_on:
+            - "db"
+        restart: always
+ 
+    db:
+        image: mariadb
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: bot
+          TZ: ${timeZone}
+        volumes:
+        - ./db_data:/var/lib/mysql
